@@ -1,0 +1,26 @@
+# --- Sistema/OS/IDE ---
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# --- PHP/Composer (se um dia usar) ---
+vendor/
+composer.lock
+
+# --- Node (se um dia usar) ---
+node_modules/
+
+# --- CodeIgniter 3: caches e logs ---
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+# --- Configs sensíveis (mantenha um .example no repo) ---
+application/config/database.php
