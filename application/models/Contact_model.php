@@ -7,31 +7,31 @@ class Contact_model extends CI_Model {
         parent::__construct();
     }
 
-    //All contacts...
+    //Todos os contatos...
     public function get_all_contacts() {
         $query=$this->db->get('contacts');
         return $query->result();
     }
 
-    //getting a single contact by ID
+    //Um contato único pelo ID
     public function get_contact($id) {
         $param=array('id'=>$id);
         $query=$this->db->get_where('contacts', $param);
         return $query->row();
     }
 
-    //Adding a contact
+    //Inserindo um contato
     public function insert_contact($data) {
         return $this->db->insert('contacts', $data);
     }
 
-    //Updating a contact data
+    //Atualizando um contato
     public function update_contact($id, $data) {
         $this->db->where('id', $id);
         return $this->db->update('contacts', $data);
     }
 
-    //Deleting a contact 
+    //Excluindo um contato 
     public function delete_contact($id) {
         $param = array('id' => $id);
         return $this->db->delete('contacts', $param);

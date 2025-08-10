@@ -1,7 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Contacts extends CI_Controller {
+    require_once(APPPATH . 'core/MY_Controller.php');
+    class Contacts extends MY_Controller {
+
 
     public function __construct() {
         parent::__construct();

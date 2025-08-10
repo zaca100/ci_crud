@@ -326,7 +326,7 @@ $config['cache_query_string'] = FALSE;
 | https://codeigniter.com/userguide3/libraries/encryption.html
 |
 */
-$config['encryption_key'] = '';
+$config['encryption_key'] = 'fc487a525cfba440535044a674df491759c31b48fdbf2f01b41c0653d2568ca9';
 
 /*
 |--------------------------------------------------------------------------
@@ -530,3 +530,7 @@ $config['rewrite_short_tags'] = FALSE;
 | Array:		array('10.0.1.200', '192.168.5.0/24')
 */
 $config['proxy_ips'] = '';
+
+
+
+$config['google_client_id'] = '601281485472-itn64abmt7pkm8gpccr76qom9m4d60vc.apps.googleusercontent.com';

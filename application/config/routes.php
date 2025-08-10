@@ -53,3 +53,22 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+$route['login']        = 'auth/login';
+$route['logout']       = 'auth/logout';
+$route['auth/google']  = 'auth/google'; 
+
+// Atalhos da área admin
+$route['admin']                 = 'admin/users';
+$route['admin/users']           = 'admin/users';
+$route['admin/users/create']    = 'admin/users/create';
+$route['admin/users/edit/(:num)'] = 'admin/users/edit/$1';
+$route['admin/users/delete/(:num)'] = 'admin/users/delete/$1';
+
+$route['admin/features']          = 'admin/features';
+$route['admin/features/create']   = 'admin/features/create';
+$route['admin/features/edit/(:num)'] = 'admin/features/edit/$1';
+$route['admin/features/delete/(:num)'] = 'admin/features/delete/$1';
+
+$route['admin/permissions']       = 'admin/permissions';
+$route['admin/permissions/role/(:num)'] = 'admin/permissions/role/$1';
+$route['admin/permissions/user/(:num)'] = 'admin/permissions/user/$1';
