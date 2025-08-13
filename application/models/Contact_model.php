@@ -37,5 +37,50 @@ class Contact_model extends CI_Model {
         return $this->db->delete('contacts', $param);
     }
 
+    /**
+     * Lista contatos aplicando filtros e ordenação (sem paginação).
+     * Opcional: um "limit" de segurança para não explodir a tela.
+     */
+
+    public function get_filtered_simple($filters = [], $sort = ['column' => 'id', 'dir' => 'desc'], $limit = 100)
+    {
+        // Filtros
+        if (!empty($filters['q'])) {
+            $q = trim($filters['q']);
+            $this->db->group_start()
+                    ->like('name',  $q)
+                    ->or_like('email', $q)
+                    ->or_like('phone', $q)
+                    ->group_end();
+        }
+
+        // Ordenação (whitelist)
+        $allowed = ['id', 'name', 'email', 'phone']; 
+        $col = in_array($sort['column'], $allowed, true) ? $sort['column'] : 'id';
+        $dir = strtolower($sort['dir']) === 'asc' ? 'asc' : 'desc';
+
+        $this->db->from('contacts');
+        $this->db->order_by($col, $dir);
+
+        if ($limit > 0) {
+            $this->db->limit((int)$limit);
+        }
+
+        return $this->db->get()->result();
+    }
+
+    /** (opcional) total só para exibir “N encontrados” */
+    public function count_filtered_simple($filters = [])
+    {
+        if (!empty($filters['q'])) {
+            $q = trim($filters['q']);
+            $this->db->group_start()
+                    ->like('name',  $q)
+                    ->or_like('email', $q)
+                    ->or_like('phone', $q)
+                    ->group_end();
+        }
+        return $this->db->count_all_results('contacts');
+    }
 }
 

@@ -13,7 +13,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     // Página inicial: lista todos os contatos
     public function index() {
-        $data['contacts'] = $this->Contact_model->get_all_contacts();
+        
+        // Entrada via query string
+        $q    = trim((string) $this->input->get('q', TRUE));
+        $sort = (string) $this->input->get('sort', TRUE);
+        $dir  = strtolower((string) $this->input->get('dir', TRUE)) === 'asc' ? 'asc' : 'desc';
+
+        // Defaults
+        $sort_column = $sort ?: 'id';
+
+        // Monta filtros e ordenação
+        $filters = [];
+        if ($q !== '') {
+            $filters['q'] = $q;
+        }
+        $sort_cfg = ['column' => $sort_column, 'dir' => $dir];
+
+        // Busca (sem paginação)
+        $contacts = $this->Contact_model->get_filtered_simple($filters, $sort_cfg, 500);
+        $total    = $this->Contact_model->count_filtered_simple($filters); // opcional, para exibir
+
+        $data = [
+            'contacts' => $contacts,
+            'total'    => $total,
+            'q'        => $q,
+            'sort'     => $sort_column,
+            'dir'      => $dir,
+        ];
+
         $this->load->view('contacts/index', $data);
     }
 

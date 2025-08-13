@@ -72,3 +72,9 @@ $route['admin/features/delete/(:num)'] = 'admin/features/delete/$1';
 $route['admin/permissions']       = 'admin/permissions';
 $route['admin/permissions/role/(:num)'] = 'admin/permissions/role/$1';
 $route['admin/permissions/user/(:num)'] = 'admin/permissions/user/$1';
+
+// Invoices
+$route['invoices']              = 'invoices/index';
+$route['invoices/create']       = 'invoices/create';
+$route['invoices/edit/(:num)']  = 'invoices/edit/$1';
+$route['invoices/delete/(:num)']= 'invoices/delete/$1';
